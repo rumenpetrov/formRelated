@@ -10,8 +10,10 @@
 <div class="container">
 	<h1>Hello formRelated!</h1>
 
+	<h4>Working:</h4>
+
 	<div class="choose check">
-		<input type="checkbox" id="checkme" class="js-related-trigger" data-related-id="0" />
+		<input type="checkbox" id="checkme" class="js-related-trigger" data-related-id="0" checked="true" />
 		<label for="checkme">Check me!</label>
 	</div>
 
@@ -32,6 +34,8 @@
 	<div class="form-related js-related-target" data-related-id="1">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nesciunt cum ducimus magnam nam, esse recusandae molestias odio reprehenderit fugit delectus consequuntur, aut, nulla sapiente neque ad. Modi, fuga porro!</p>
 	</div>
+
+	<h4>TODO:</h4>
 
 	<div class="choose radio">
 		<input type="radio" name="option" id="option-first" class="js-related-trigger" data-related-id="opt1" value="true" />
@@ -66,9 +70,8 @@
 <script>
 	// Example usage:
 	formRelated({
-		$triggers: $('.js-related-trigger'),
-		$targets: $('.js-related-target'),
-		classActive: 'has-flag'
+		triggers: '.js-related-trigger',
+		targets: '.js-related-target'
 	});
 </script>
 </body>

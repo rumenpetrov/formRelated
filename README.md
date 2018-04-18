@@ -21,8 +21,8 @@ To init the plugin add this:
 ```
 <script>
 	formRelated({
-		$triggers: $('.js-related-trigger'),
-		$targets: $('.js-related-target'),
+		triggers: '.js-related-trigger',
+		targets: '.js-related-target',
 		classActive: 'has-flag'
 	});
 </script>

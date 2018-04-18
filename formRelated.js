@@ -1,6 +1,8 @@
 (function($, window, document, undefined) {
 	'use strict';
 
+	var name = 'FormRelated';
+
 	/**
 	 * Toggle content when certan checkbox or radio button is checked. Can handle multiple triggers and targets. Require "data-related-id" attribute on triggers and targets.
 	 * 
@@ -8,68 +10,43 @@
 	 *
 	 * TODO:
 	 * - refactor toggle function
-	 * - test radio buttons cases
+	 * - add radio buttons case where there are multiple options
 	 * - add invert case
 	 */
-	var FormRelated = function(options) {
-		this.initialize(options);
+	var FormRelated = function(settings) {
+		this.initialize(settings);
 	};
 
 	FormRelated.prototype = {
 		defaults: {
-			$triggers: null,
-			$targets: null,
+			triggers: '.js-form-related-trigger',
+			targets: '.js-form-related-target',
 			classActive: 'has-flag'
 		},
-		options: {},
+		settings: {},
 		$triggers: null,
 		$targets: null,
-		classActive: '',
-		initialize: function(options) {
-			var self = this;
-			
-			self.options = $.extend(true, {}, self.defaults, options);
-
-			self.validateInput();
-		},
-		validateInput: function() {
+		initialize: function(settings) {
 			var self = this;
 
-			if (self.options.$triggers === null || self.options.$targets === null) {
-				console.error('FormRelated: Elements are missing or configuration is not valid!');
-				console.error('FormRelated: Stop execution!');
-				return;
-			}
-
-			if (!self.options.$triggers.length || !self.options.$targets.length) {
-				console.error('FormRelated: Elements are missing!');
-				console.error('FormRelated: Stop execution!');
-				return;
-			}
+			self.settings = $.extend(true, {}, self.defaults, settings);
 
 			self.cacheConfig();
+			self.bindEvents();
+
+			self.$triggers.each(function() {
+				self.toggle(this);
+			});
 		},
 		cacheConfig: function() {
-			var self = this;
-
-			self.$triggers = self.options.$triggers;
-			self.$targets = self.options.$targets;
-			self.classActive = self.options.classActive;
-
-			self.$triggers.data('related', self);
-
-			self.bindEvents();
+			this.$triggers = $(this.settings.triggers);
+			this.$targets = $(this.settings.targets);
 		},
 		bindEvents: function() {
 			var self = this;
 
 			self.$triggers.on('change', function() {
 				self.toggle(this);
-			});
-
-			self.$triggers.each(function() {
-				self.toggle(this);
-				// disabler();
 			});
 		},
 		toggle: function(element) {
@@ -86,7 +63,7 @@
 				stateValue = true;
 				$currentTriggers.not($element).prop('checked', stateChecked);
 			}
-			
+
 			if (stateChecked && type === 'radio') {
 				stateValue = ($element.val() === 'true' || $element.val() === '1' || $element.val() === 'yes') ? true : false;
 			}
@@ -95,14 +72,14 @@
 				$currentTargets.each(function() {
 					var $this = $(this);
 
-					$this.addClass(self.classActive);
+					$this.addClass(self.settings.classActive);
 					$this.find('input, select, textarea').prop('disabled', false);
 				});
 			} else {
 				$currentTargets.each(function() {
 					var $this = $(this);
 
-					$this.removeClass(self.classActive);
+					$this.removeClass(self.settings.classActive);
 					$this.find('input, select, textarea').prop('disabled', true);
 				});
 			}
