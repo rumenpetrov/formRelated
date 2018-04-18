@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>FormRelated</title>
+
+	<link rel="stylesheet" href="formRelated.css" type="text/css" media="all" />
+</head>
+<body>
+<div class="container">
+	<h1>Hello formRelated!</h1>
+
+	<div class="choose check">
+		<input type="checkbox" id="checkme" class="js-related-trigger" data-related-id="0" />
+		<label for="checkme">Check me!</label>
+	</div>
+
+	<div class="form-related js-related-target" data-related-id="0">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nesciunt cum ducimus magnam nam, esse recusandae molestias odio reprehenderit fugit delectus consequuntur, aut, nulla sapiente neque ad. Modi, fuga porro!</p>
+	</div>
+
+	<div class="choose radio">
+		<input type="radio" name="question" id="question-yes" class="js-related-trigger" data-related-id="1" value="yes" />
+		<label for="question-yes">yes</label>
+	</div>
+
+	<div class="choose radio">
+		<input type="radio" name="question" id="question-no" class="js-related-trigger" data-related-id="1" value="no" />
+		<label for="question-no">no</label>
+	</div>
+
+	<div class="form-related js-related-target" data-related-id="1">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nesciunt cum ducimus magnam nam, esse recusandae molestias odio reprehenderit fugit delectus consequuntur, aut, nulla sapiente neque ad. Modi, fuga porro!</p>
+	</div>
+
+	<div class="choose radio">
+		<input type="radio" name="option" id="option-first" class="js-related-trigger" data-related-id="opt1" value="true" />
+		<label for="option-first">1</label>
+	</div>
+
+	<div class="form-related js-related-target" data-related-id="opt1">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nesciunt cum ducimus magnam nam, esse recusandae molestias odio reprehenderit fugit delectus consequuntur, aut, nulla sapiente neque ad. Modi, fuga porro!</p>
+	</div>
+
+	<div class="choose radio">
+		<input type="radio" name="option" id="option-second" class="js-related-trigger" data-related-id="opt2" value="true" />
+		<label for="option-second">2</label>
+	</div>
+
+	<div class="form-related js-related-target" data-related-id="opt2">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nesciunt cum ducimus magnam nam, esse recusandae molestias odio reprehenderit fugit delectus consequuntur, aut, nulla sapiente neque ad. Modi, fuga porro!</p>
+	</div>
+
+	<div class="choose radio">
+		<input type="radio" name="option" id="option-third" class="js-related-trigger" data-related-id="opt3" value="true" />
+		<label for="option-third">3</label>
+	</div>
+
+	<div class="form-related js-related-target" data-related-id="opt3">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere nesciunt cum ducimus magnam nam, esse recusandae molestias odio reprehenderit fugit delectus consequuntur, aut, nulla sapiente neque ad. Modi, fuga porro!</p>
+	</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="formRelated.js"></script>
+<script>
+	// Example usage:
+	formRelated({
+		$triggers: $('.js-related-trigger'),
+		$targets: $('.js-related-target'),
+		classActive: 'has-flag'
+	});
+</script>
+</body>
+</html>
